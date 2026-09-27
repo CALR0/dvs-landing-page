@@ -42,3 +42,5 @@ __v0_jsx-dev-runtime.ts
 .idea/
 .DS_Store
 Thumbs.db
+
+.vercel

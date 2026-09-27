@@ -2,6 +2,8 @@
 
 Rediseño del sitio de [Daily VA Services Inc.](https://dailyvaservices.com/), un contact center de Estados Unidos que atiende a consumidores residenciales por teléfono (atención, seguimiento y servicios de energía residencial).
 
+**Sitio desplegado:** [daily-va-service.vercel.app](https://daily-va-service.vercel.app)
+
 ## Tecnologías
 
 - **Next.js 16** (App Router) + **React 19** + **TypeScript**

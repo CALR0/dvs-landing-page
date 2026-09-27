@@ -6,7 +6,7 @@ import { LegalPage, type LegalSection } from '@/components/legal/legal-page'
 // Text reproduced from https://dailyvaservices.com/privacy.html — do not reword legal meaning.
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Daily VA Services Inc.',
+  title: 'Privacy Policy',
   description: 'What information Daily VA Services Inc. collects when we speak with a consumer, how we use it and the choices the consumer has.',
   alternates: { canonical: '/privacy' },
 }

@@ -15,11 +15,11 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dailyvaservices.com'),
-  title: 'Daily VA Services Inc. — Contact center & customer support',
+  title: { default: 'DVS - Home', template: 'DVS - %s' },
   description:
     'A United States contact center. Licensed agents speak with residential consumers by telephone, answer their questions, process their requests and follow up afterwards.',
   openGraph: {
-    title: 'Daily VA Services Inc.',
+    title: 'Daily VA Services',
     description: 'We connect people with the right service — human-led communication, support and follow-up.',
     images: ['/images/energy-sky.png'],
     type: 'website',

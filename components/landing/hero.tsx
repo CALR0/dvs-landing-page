@@ -78,7 +78,7 @@ export function Hero() {
       <motion.div
         ref={copyRef}
         style={touch ? undefined : { y: textY, opacity: textOpacity }}
-        className="hero-copy mx-auto flex h-full max-w-[1440px] flex-col justify-center px-5 pb-12 pt-[88px] sm:px-8 md:pb-24 md:pt-24 lg:px-12 lg:pb-10 lg:pt-28"
+        className="hero-copy mx-auto flex h-full max-w-[1440px] flex-col justify-center px-5 pb-12 pt-[88px] sm:px-8 lg:px-12 lg:pb-10 lg:pt-28"
       >
         <motion.p
           initial={{ opacity: 0 }}
@@ -120,19 +120,6 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 hidden md:block">
-        <div className="mx-auto flex max-w-[1440px] items-end justify-between px-8 pb-8 lg:px-12">
-          <div className="flex items-center gap-4 text-ink/55">
-            <span className="relative block h-10 w-px overflow-hidden bg-ink/15">
-              <span className="anim-cue absolute inset-0 bg-ink/60" />
-            </span>
-            <span className="eyebrow">Scroll</span>
-          </div>
-          <p className="eyebrow text-ink/55">
-            <a href={company.phoneHref} className="tap hover:text-ink">{company.phone}</a> · {company.hoursShort}
-          </p>
-        </div>
-      </div>
     </section>
   )
 }

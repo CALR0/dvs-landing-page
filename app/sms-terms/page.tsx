@@ -6,7 +6,7 @@ import { LegalPage, type LegalSection } from '@/components/legal/legal-page'
 // Text reproduced from https://dailyvaservices.com/sms-terms.html — do not reword legal meaning.
 
 export const metadata: Metadata = {
-  title: 'Messaging Terms — Daily VA Services Inc.',
+  title: 'Messaging Terms',
   description: 'The terms of the text messaging program operated by Daily VA Services Inc.: consent, frequency, costs and how to stop messages.',
   alternates: { canonical: '/sms-terms' },
 }

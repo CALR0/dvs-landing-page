@@ -101,19 +101,12 @@
   20% { opacity: .9; }
   100% { transform: translate3d(40px, -120px, 0); opacity: 0; }
 }
-@keyframes scroll-cue {
-  0% { transform: scaleY(0); transform-origin: top; }
-  45% { transform: scaleY(1); transform-origin: top; }
-  55% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
 
 .anim-sun { animation: sun-drift 18s ease-in-out infinite; }
 .anim-cloud { animation: cloud-drift 60s linear infinite alternate; }
 .anim-flow { stroke-dasharray: 2 14; animation: flow-dash 40s linear infinite; }
 .anim-flow-slow { stroke-dasharray: 1 22; animation: flow-dash 70s linear infinite; }
 .anim-mote { animation: mote 9s ease-in-out infinite; }
-.anim-cue { animation: scroll-cue 2.6s var(--ease-premium) infinite; }
 
 [data-play='false'] .anim-sun,
 [data-play='false'] .anim-cloud,
@@ -135,7 +128,7 @@
    colour/opacity fades — making every transition instant feels abrupt, not calmer. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .anim-sun, .anim-cloud, .anim-flow, .anim-flow-slow, .anim-mote, .anim-cue { animation: none !important; }
+  .anim-sun, .anim-cloud, .anim-flow, .anim-flow-slow, .anim-mote { animation: none !important; }
 }
 
 /* Hero on touch screens: JS sets the target once per frame, these transitions glide to it
@@ -176,7 +169,7 @@
 @media (max-width: 1023px) { html[data-menu='open'] { overflow: hidden; } }
 /* the page behind is covered and scroll-locked: pause its ambient loops */
 html[data-menu='open'] .anim-sun, html[data-menu='open'] .anim-cloud, html[data-menu='open'] .anim-flow,
-html[data-menu='open'] .anim-flow-slow, html[data-menu='open'] .anim-mote, html[data-menu='open'] .anim-cue { animation-play-state: paused; }
+html[data-menu='open'] .anim-flow-slow, html[data-menu='open'] .anim-mote { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .menu-item, .menu[data-open='true'] .menu-item { transform: none; }
 }

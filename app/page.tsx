@@ -7,6 +7,7 @@ import { Trust } from '@/components/landing/trust'
 import { AboutIntro, Principles } from '@/components/landing/about'
 import { Contact, Footer } from '@/components/landing/contact'
 import { MotionProvider } from '@/components/landing/motion'
+import { SectionTitle } from '@/components/landing/section-title'
 
 // Morning → clear sky → warm light → deep evening → golden hour.
 export default function Page() {
@@ -15,6 +16,7 @@ export default function Page() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-cloud">
         Skip to content
       </a>
+      <SectionTitle />
       <Header />
       <main id="main">
         <div id="top" />

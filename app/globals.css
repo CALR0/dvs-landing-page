@@ -1,0 +1,207 @@
+@import 'tailwindcss';
+
+/* Pinned (sticky) horizontal storytelling: every desktop/laptop window, at any browser zoom.
+   Browser zoom shrinks the CSS viewport (a 1366x768 laptop at 100% is ~1366x657), so the pinned
+   layouts size themselves with the viewport *height* too (svh-based clamps) instead of switching off.
+   Only really short windows (<480px tall, e.g. landscape phones) fall back to the stacked layout. */
+@custom-variant pin (@media (min-width: 1024px) and (min-height: 480px));
+/* The "Our process" row can go a bit narrower: with a mouse (browser zoomed to 150%+ on a laptop)
+   the five stages still fit from 820px. Touch tablets of that width keep the vertical timeline. */
+@custom-variant row {
+  @media (min-width: 1024px) and (min-height: 480px) { @slot; }
+  @media (min-width: 820px) and (max-width: 1023.98px) and (min-height: 400px) and (pointer: fine) { @slot; }
+}
+
+/* ───────────────────────── Daily VA — design tokens ───────────────────────── */
+@theme {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-cloud: #f8f6f1;     /* warm white — dominant surface */
+  --color-ivory: #f1ece2;     /* soft ivory */
+  --color-mist: #e4eef2;      /* very light blue */
+  --color-sky: #9cc5d9;       /* sky blue */
+  --color-sky-deep: #3f7896;  /* readable sky for accents on light */
+  --color-sage: #a7b8a5;      /* muted sage */
+  --color-eucalyptus: #7f9a8c;
+  --color-sand: #e6d8bf;
+  --color-sun: #d8a45a;       /* sunlight gold */
+  --color-sun-soft: #f3d9a8;
+  --color-ink: #11293a;       /* deep forest blue — text */
+  --color-deep: #0c1f2c;      /* dark sections */
+  --color-slate: #4d6272;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * { border-color: color-mix(in oklab, var(--color-ink) 12%, transparent); }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--color-cloud);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection { background: var(--color-sun-soft); color: var(--color-ink); }
+  :focus-visible { outline: 2px solid var(--color-sky-deep); outline-offset: 4px; border-radius: 2px; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+/* Typography helpers */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.display {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: .9;
+}
+.serif {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Film grain — gives photography & flat colour a printed, cinematic feel */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ambient motion — all paused when the section is off-screen (data-play) */
+@keyframes sun-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .85; }
+  50% { transform: translate3d(-3%, 2%, 0) scale(1.08); opacity: 1; }
+}
+@keyframes cloud-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-6%, 0, 0); }
+}
+@keyframes flow-dash {
+  to { stroke-dashoffset: -1000; }
+}
+@keyframes mote {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  20% { opacity: .9; }
+  100% { transform: translate3d(40px, -120px, 0); opacity: 0; }
+}
+@keyframes scroll-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.anim-sun { animation: sun-drift 18s ease-in-out infinite; }
+.anim-cloud { animation: cloud-drift 60s linear infinite alternate; }
+.anim-flow { stroke-dasharray: 2 14; animation: flow-dash 40s linear infinite; }
+.anim-flow-slow { stroke-dasharray: 1 22; animation: flow-dash 70s linear infinite; }
+.anim-mote { animation: mote 9s ease-in-out infinite; }
+.anim-cue { animation: scroll-cue 2.6s var(--ease-premium) infinite; }
+
+[data-play='false'] .anim-sun,
+[data-play='false'] .anim-cloud,
+[data-play='false'] .anim-flow,
+[data-play='false'] .anim-flow-slow,
+[data-play='false'] .anim-mote { animation-play-state: paused; }
+
+/* Phones: keep fades/parallax, drop continuous work */
+@media (max-width: 767px) {
+  .anim-mote, .anim-flow-slow { animation: none; opacity: 0; }
+  .eyebrow { font-size: 11px; letter-spacing: .14em; }
+}
+
+/* Small text links keep their look but get a ~44px touch area (WCAG 2.5.8 / Apple HIG) */
+.tap { position: relative; }
+.tap::after { content: ''; position: absolute; inset: -10px -6px; }
+
+/* Reduced motion: stop movement (drifting, looping, smooth-scroll jumps) but keep gentle
+   colour/opacity fades — making every transition instant feels abrupt, not calmer. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .anim-sun, .anim-cloud, .anim-flow, .anim-flow-slow, .anim-mote, .anim-cue { animation: none !important; }
+}
+
+/* Hero on touch screens: JS sets the target once per frame, these transitions glide to it
+   (opacity/transform only → composited on the GPU). ~0.2s is short enough to feel attached to the
+   finger and long enough to hide uneven scroll events. */
+.hero[data-touch='on'] .hero-copy {
+  transition: opacity .22s cubic-bezier(.25, .8, .35, 1), transform .22s cubic-bezier(.25, .8, .35, 1);
+  will-change: transform, opacity;
+}
+.hero[data-touch='on'] .hero-image {
+  transition: transform .3s cubic-bezier(.25, .8, .35, 1);
+}
+
+/* Mobile menu — every animated property is transform or opacity (GPU-composited). */
+.menu { visibility: hidden; pointer-events: none; transition: visibility 0s linear .55s; }
+.menu[data-open='true'] { visibility: visible; pointer-events: auto; transition: visibility 0s; }
+.menu-circle {
+  position: absolute; width: 80px; height: 80px; border-radius: 9999px;
+  /* centred on the menu button: side padding + 22px (half the 44px button); bar mid-line at 36px */
+  right: calc(var(--menu-pad, 20px) + 22px - 40px); top: -4px;
+  background: var(--color-mist);
+  transform: scale(0); will-change: transform;
+  transition: transform .5s cubic-bezier(.5, 0, .75, 0);
+}
+.menu[data-open='true'] .menu-circle { transform: scale(var(--menu-scale)); transition: transform .65s cubic-bezier(.22, 1, .36, 1); }
+.menu-sky { position: absolute; inset: 0; opacity: 0; transition: opacity .25s ease; }
+.menu[data-open='true'] .menu-sky { opacity: .45; transition: opacity .5s ease .2s; }
+.menu-item { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity .2s ease, transform .2s ease; }
+.menu[data-open='true'] .menu-item {
+  opacity: 1; transform: none;
+  transition: opacity .55s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: calc(.18s + var(--i, 0) * .05s);
+}
+@media (min-width: 640px) { .menu { --menu-pad: 32px; } }
+.menu-item[data-picked='true'] { color: var(--color-sky-deep); transform: translate3d(10px, 0, 0); transition: transform .25s cubic-bezier(.22, 1, .36, 1), color .15s; }
+.menu-item:active { color: var(--color-sky-deep); }
+/* scroll lock while the menu is open — scoped to menu widths, so it can never stick on desktop */
+@media (max-width: 1023px) { html[data-menu='open'] { overflow: hidden; } }
+/* the page behind is covered and scroll-locked: pause its ambient loops */
+html[data-menu='open'] .anim-sun, html[data-menu='open'] .anim-cloud, html[data-menu='open'] .anim-flow,
+html[data-menu='open'] .anim-flow-slow, html[data-menu='open'] .anim-mote, html[data-menu='open'] .anim-cue { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .menu-item, .menu[data-open='true'] .menu-item { transform: none; }
+}
+
+/* Nav underline */
+.nav-item { position: relative; }
+.nav-item::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%; bottom: -6px;
+  height: 1px;
+  background: var(--color-sun);
+  transition: right .35s var(--ease-premium);
+}
+.nav-item:hover::after, .nav-item:focus-visible::after { right: 0; }
+
+@media print { header { display: none; } }
+
+/* Legal pages — long-form reading */
+.legal-prose { color: color-mix(in oklab, var(--color-ink) 75%, transparent); font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; }
+.legal-prose > * + * { margin-top: 1.1em; }
+.legal-prose strong { color: var(--color-ink); font-weight: 600; }
+.legal-prose a { color: var(--color-sky-deep); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--color-sun) 60%, transparent); text-underline-offset: 4px; }
+.legal-prose a:hover { color: var(--color-ink); text-decoration-color: var(--color-sun); }
+.legal-prose ul { display: grid; gap: .7em; }
+.legal-prose li { position: relative; padding-left: 1.6em; }
+.legal-prose li::before { content: ''; position: absolute; left: .2em; top: .72em; width: .45em; height: .45em; border-radius: 999px; background: var(--color-sun); }
+.legal-prose .callout { border-left: 2px solid var(--color-sun); background: color-mix(in oklab, var(--color-sun-soft) 35%, transparent); padding: 1em 1.25em; color: var(--color-ink); }

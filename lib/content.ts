@@ -26,12 +26,12 @@ export const nav = [
 /* 01 — About us: identity. The only place the company describes itself in full. */
 export const identity = {
   statement:
-    'is a United States contact center. Our licensed agents speak with residential consumers by telephone, answer their questions, process the requests they make and follow up with them afterwards.',
+    'is an independent energy agent. We help residential consumers compare the licensed retail electricity suppliers available at their address and enroll with the one they choose, and we support them afterwards. We are not an electricity supplier.',
   facts: [
-    { label: 'What we are', value: 'A contact center based in Miami, Florida' },
+    { label: 'What we are', value: 'An independent energy agent based in Miami, Florida — not a supplier' },
     { label: 'Who we speak with', value: 'Residential consumers in the United States' },
     { label: 'How we reach them', value: 'By telephone, with licensed agents — and one-to-one texts, only with permission' },
-    { label: 'What we handle', value: 'Customer care, follow-up and residential energy service' },
+    { label: 'What we handle', value: 'Electricity supply options, enrollment and the support that follows' },
   ],
 }
 
@@ -41,7 +41,7 @@ export const conversation = {
     'Every call is handled by a licensed agent — a real person listening, explaining and helping move the conversation forward.',
   stages: [
     { title: 'Call', body: 'A licensed agent calls — and says who we are first.' },
-    { title: 'Understand', body: 'The agent explains the program the consumer was contacted about.' },
+    { title: 'Understand', body: 'The agent explains the electricity supply options available to that household.' },
     { title: 'Answer', body: 'Questions answered. The consumer’s requests processed.' },
     { title: 'Follow up', body: 'Details confirmed and requested documents sent.' },
     { title: 'Support', body: 'A person on our toll-free line, Monday to Saturday.' },
@@ -54,7 +54,7 @@ export const services = [
     no: '01',
     title: 'Conversations',
     lead: 'Speaking with consumers.',
-    body: 'A licensed agent calls, identifies our company at the start of the conversation, explains the program and answers the consumer’s questions.',
+    body: 'A licensed agent calls, identifies our company at the start of the conversation, explains the supply options available and answers the consumer’s questions.',
     visual: 'signal',
   },
   {
@@ -67,7 +67,7 @@ export const services = [
   {
     no: '03',
     title: 'Energy',
-    lead: 'Residential energy service.',
+    lead: 'Independent energy agent for households.',
     body: 'Helping residential consumers review their electricity supply options.',
     link: { label: 'See how it works', href: '#energy' },
     visual: 'home',

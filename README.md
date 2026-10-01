@@ -1,6 +1,6 @@
 # Daily VA Services — Landing page
 
-Rediseño del sitio de [Daily VA Services Inc.](https://dailyvaservices.com/), un contact center de Estados Unidos que atiende a consumidores residenciales por teléfono (atención, seguimiento y servicios de energía residencial).
+Rediseño del sitio de [Daily VA Services Inc.](https://dailyvaservices.com/), un agente independiente de energía que ayuda a hogares de Estados Unidos a comparar los proveedores minoristas de electricidad disponibles en su dirección, inscribirse con el que elijan y acompañarlos después. No es un proveedor de electricidad.
 
 **Sitio desplegado:** [daily-va-service.vercel.app](https://daily-va-service.vercel.app)
 

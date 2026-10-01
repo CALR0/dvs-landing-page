@@ -32,7 +32,7 @@ const sections: LegalSection[] = [
     title: 'How we use it',
     content: (
       <ul>
-        <li>To speak with the consumer about the program they were contacted about, and to answer their questions.</li>
+        <li>To review the electricity supply options available at the consumer’s address, and to answer their questions.</li>
         <li>To process the request or enrollment the consumer asked for.</li>
         <li>To follow up after a call by telephone or text message, when the consumer agreed to it.</li>
         <li>To keep records required for quality assurance, training and compliance, including proof of consent.</li>
@@ -94,10 +94,10 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Legal — Privacy"
       title="Privacy Policy"
-      updated="September 25, 2026"
+      updated="September 30, 2026"
       intro={
         <p>
-          {company.name} (“we”) is a contact center. This policy explains what information we collect when we speak with a consumer, how we use it and the choices the consumer has.
+          {company.name} (“we”) is an independent energy agent that helps households compare licensed retail electricity suppliers and enroll with the one they choose. This policy explains what information we collect when we speak with a consumer, how we use it and the choices the consumer has.
         </p>
       }
       sections={sections}

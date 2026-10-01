@@ -68,7 +68,7 @@ export function Footer() {
           <div className="flex flex-col items-center lg:col-span-5 lg:items-start">
             <a href="#top" aria-label="Back to top" className="tap"><Logo tone="light" /></a>
             <p className="mt-5 max-w-[320px] text-sm leading-relaxed text-cloud/55">
-              Contact center and customer support services.
+              Independent energy agent for households.
             </p>
           </div>
           <nav aria-label="Footer" className="lg:col-span-3">

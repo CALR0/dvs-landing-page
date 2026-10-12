@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://dailyvaservices.com'),
   title: { default: 'DVS - Home', template: 'DVS - %s' },
   description:
-    'A United States contact center. Licensed agents speak with residential consumers by telephone, answer their questions, process their requests and follow up afterwards.',
+    'An independent energy agent. We help households compare the licensed retail electricity suppliers available at their address, enroll with the one they choose and support them afterwards. We are not an electricity supplier.',
   openGraph: {
     title: 'Daily VA Services',
-    description: 'We connect people with the right service — human-led communication, support and follow-up.',
+    description: 'We help people choose the right electricity plan — independent, human-led, and never a supplier.',
     images: ['/images/energy-sky.png'],
     type: 'website',
   },

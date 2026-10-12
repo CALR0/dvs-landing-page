@@ -87,7 +87,7 @@ export function Hero() {
           className="eyebrow flex items-center gap-3 text-ink/60"
         >
           <span aria-hidden className="size-1.5 rounded-full bg-sun" />
-          {company.name} — Contact center & customer support
+          {company.name} — Independent energy agent
         </motion.p>
 
         <h1 id="hero-title" className="display mt-6 text-[clamp(3.2rem,9vw,9.5rem)] text-ink">
@@ -95,11 +95,11 @@ export function Hero() {
             immediate
             delay={0.2}
             lines={[
-              'We connect',
+              'We help',
               <>
-                <span className="serif text-sky-deep">people</span> with
+                <span className="serif text-sky-deep">people</span> choose
               </>,
-              'the right service.',
+              'the right plan.',
             ]}
           />
         </h1>
@@ -111,7 +111,7 @@ export function Hero() {
           className="mt-8 flex flex-col gap-8 md:mt-10 md:flex-row md:items-end md:gap-16"
         >
           <p className="max-w-[440px] text-base leading-relaxed text-ink/70 md:text-lg">
-            Human-led communication, customer support and follow-up — built around the person on the other end of the line.
+            An independent energy agent. We help households compare the licensed retail electricity suppliers available at their address, enroll with the one they choose and support them afterwards.
           </p>
           <div className="flex flex-wrap items-center gap-6">
             <ArrowLink href="#services" variant="solid">Explore our services</ArrowLink>
